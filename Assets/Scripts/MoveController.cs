@@ -16,9 +16,18 @@ public class MoveController : MonoBehaviour
     private bool isJumping;
     private bool isFalling;
     private bool jumpInput;
+    private bool isFlipped = true;
 
-    [SerializeField] private float maxSpeed = 1.0f;
+    private readonly Vector3 originalScale = new Vector3(-0.5f, 0.5f, 1f);
+    readonly Vector3 flippedScale = new Vector3(0.5f, 0.5f, 1f);
     
+    
+    [SerializeField] private float maxSpeed = 1.0f;
+    [SerializeField] private float defaultGravityScale = 1.0f;
+    [SerializeField] private float jumpGravityScale = 1.0f;
+    [SerializeField] private float fallGravityScale = 2.0f;
+    [SerializeField] private float flipThreshold = 0.1f;
+
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -48,14 +57,37 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        Debug.Log("x velocity: " + rb2D.velocity.x);
 
         UpdateVelocity();
+        
+        UpdateJump();
+        
+        UpdateDirection();
+        
+        UpdateGravityScale();
+    }
+
+    private void UpdateVelocity()
+    {
+        Vector2 velocity = rb2D.velocity;
+        velocity += movementInput * movementSpeed * Time.fixedDeltaTime;
+        
+        movementInput = Vector2.zero;
+        
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        
+        
+        rb2D.velocity = velocity;
+    }
+
+    private void UpdateJump()
+    {
         if (isJumping && rb2D.velocity.y < 0)
         {
             isFalling = true;
         }
-        
-
         
         if (jumpInput && cc2D.IsTouchingLayers(groundMask)) {
             rb2D.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
@@ -65,19 +97,32 @@ public class MoveController : MonoBehaviour
             isJumping = false;
             isFalling = false;
         }
-        
     }
 
-    private void UpdateVelocity()
+    private void UpdateDirection()
     {
-        Vector2 velocity = rb2D.velocity;
-        velocity += movementInput * (movementSpeed * Mathf.Abs(movementInput.x)) * Time.fixedDeltaTime;
-        
-        movementInput = Vector2.zero;
-
-        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
-        
-        rb2D.velocity = velocity;
-        Debug.Log("x velocity: " + velocity.x);
+        if (rb2D.velocity.x > flipThreshold && isFlipped)
+        {
+            isFlipped = false;
+            transform.localScale = originalScale;
+        } else if (rb2D.velocity.x < -flipThreshold && !isFlipped)
+        {
+            isFlipped = true;
+            transform.localScale = flippedScale;
+        }
     }
+
+    private void UpdateGravityScale()
+    {
+        float gravityScale = defaultGravityScale;
+
+        if (!cc2D.IsTouchingLayers(groundMask))
+        {
+            gravityScale = rb2D.velocity.y < 0 ? fallGravityScale : jumpGravityScale;
+        }
+
+        rb2D.gravityScale = gravityScale;
+    }
+    
+    
 }
