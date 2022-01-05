@@ -6,6 +6,42 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Home.unity
+    guid: d37892011f66ba6488b75618541a9120
+  - enabled: 1
+    path: Assets/Scenes/Street.unity
+    guid: ee5686e25f9fc454b8b5b229a1c20e58
+  - enabled: 1
+    path: Assets/Scenes/Woods.unity
+    guid: 63c700004095bd64c9491bfa28fcbde6
+  - enabled: 1
+    path: Assets/Scenes/Hideout.unity
+    guid: 919d7b798e51c97488035d2114600165
+  - enabled: 1
+    path: Assets/Scenes/Sewer.unity
+    guid: 53cd763eb7369914f80af576d70a1d9a
+  - enabled: 1
+    path: Assets/Scenes/Church_Frontyard.unity
+    guid: 11277cc25c9e77d459bfb2b4c992d183
+  - enabled: 1
+    path: Assets/Scenes/Church_Inside.unity
+    guid: 3fbbc9f73d43d2a409d7f8f92d5bcc47
+  - enabled: 1
+    path: Assets/Scenes/Asylum_Hill.unity
+    guid: d906eb3564083fe4aa62346d753d7a14
+  - enabled: 1
+    path: Assets/Scenes/Asylum_Hallway.unity
+    guid: 216399c289ef5d54bb9c38be36810aa0
+  - enabled: 1
+    path: Assets/Scenes/Asylum_Jail.unity
+    guid: 4580c63c6cbb0b4449b7fe264c98afdb
+  - enabled: 1
+    path: Assets/Scenes/Asylum_Corridor.unity
+    guid: 81926c73bf07cea4a8efd26ac61255f8
+  - enabled: 1
+    path: Assets/Scenes/Asylum_Lab_Inside.unity
+    guid: 856d583c9e2081244a25866012c94c8a
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 70bc94aa8a0baf643af84ad3850a4b41
   m_configObjects: {}

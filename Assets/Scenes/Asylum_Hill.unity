@@ -72,21 +72,21 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 0
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRSampleCount: 512
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
-    m_PVRDenoiserTypeDirect: 0
-    m_PVRDenoiserTypeIndirect: 0
-    m_PVRDenoiserTypeAO: 0
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
+    m_PVREnvironmentMIS: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &111888955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111888956}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111888956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111888955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.44, y: 5.21, z: -27.692268}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389493704
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +242,7 @@ SpriteRenderer:
   m_SortingLayerID: 1718603907
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca76df79e14b2804bb3923fc55fe6c79, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22880b39e22214f418b1ccb54a6332c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -254,7 +284,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
-    oldSize: {x: 38.399998, y: 10.799999}
+    oldSize: {x: 57.6, y: 32.399998}
     newSize: {x: 38.399998, y: 10.799999}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -262,10 +292,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 10.799999}
+    - - {x: 0, y: 32.399998}
       - {x: 0, y: 0}
-      - {x: 38.399998, y: 0}
-      - {x: 38.399998, y: 10.799999}
+      - {x: 57.6, y: 0}
+      - {x: 57.6, y: 32.399998}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,8 +694,19 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
+  - {x: -0.49892578, y: 0.53624743}
+  - {x: -0.36333692, y: 0.7213385}
+  - {x: -0.16908768, y: 1.382678}
+  - {x: -0.05674537, y: 1.5514764}
+  - {x: 0.13408923, y: 2.4402812}
+  - {x: 0.27192277, y: 4.8461266}
+  - {x: 0.36617023, y: 6.345955}
+  - {x: 0.40240112, y: 7.128493}
+  - {x: 0.43514287, y: 8.012726}
+  - {x: 0.5445088, y: 9.611431}
+  - {x: 0.69226485, y: 10.873204}
+  - {x: 0.8146447, y: 11.55291}
+  - {x: 1.0005105, y: 11.820503}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -677,6 +718,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 70457961986115550, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6200461914088759533, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
       propertyPath: m_Name
       value: NextSceneCollider
@@ -687,11 +732,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6508588167035717294, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.5
+      value: 54.74
       objectReference: {fileID: 0}
     - target: {fileID: 6508588167035717294, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 15.2
       objectReference: {fileID: 0}
     - target: {fileID: 6508588167035717294, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
       propertyPath: m_LocalPosition.z
