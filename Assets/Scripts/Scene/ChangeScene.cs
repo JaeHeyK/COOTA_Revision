@@ -15,7 +15,6 @@ public class ChangeScene : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         StartCoroutine(SceneChangeManager.Instance.LoadSceneByOffset((int)moveToScene));
-        
     }
     
     private void OnDrawGizmos()

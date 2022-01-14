@@ -40,7 +40,12 @@ public class GameManager : SingletonNotDestroyed<GameManager>
 
     public void PositionPlayer()
     {
-        PlayerController.Instance.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        PlayerController.Instance.transform.position = GameObject.Find("StartSpawnPoint").transform.position;
+    }
+
+    public void onPhaseChanged()
+    {
+        Debug.Log("phase changed!");
     }
     
 }
