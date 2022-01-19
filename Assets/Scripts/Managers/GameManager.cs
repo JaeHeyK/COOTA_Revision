@@ -7,6 +7,7 @@ public class GameManager : SingletonNotDestroyed<GameManager>
 {
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private PlayerController playerController = null;
+    
     private bool bPlayerInstantiated;
     protected GameManager() {}
 
@@ -38,9 +39,9 @@ public class GameManager : SingletonNotDestroyed<GameManager>
         }
     }
 
-    public void PositionPlayer()
+    public void PositionPlayer(string spawnPoint)
     {
-        PlayerController.Instance.transform.position = GameObject.Find("StartSpawnPoint").transform.position;
+        PlayerController.Instance.transform.position = GameObject.Find(spawnPoint).transform.position;
     }
 
     public void onPhaseChanged()

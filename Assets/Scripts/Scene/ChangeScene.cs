@@ -14,6 +14,7 @@ public class ChangeScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        SceneChangeManager.Instance.newSceneOrder = (int)moveToScene;
         StartCoroutine(SceneChangeManager.Instance.LoadSceneByOffset((int)moveToScene));
     }
     

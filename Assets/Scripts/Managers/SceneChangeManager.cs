@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
 {
     [SerializeField] private int currentSceneIndex;
+    public int newSceneOrder = 0;
     
     protected SceneChangeManager() {}
     private void Start()
@@ -30,8 +31,17 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Initialization();
+
+        if (newSceneOrder == 1)
+        {
+            GameManager.Instance.PositionPlayer("StartSpawnPoint");
+        } else if (newSceneOrder == -1)
+        {
+            GameManager.Instance.PositionPlayer("EndSpawnPoint");
+        }
+
+        newSceneOrder = 0;
         
-        GameManager.Instance.PositionPlayer();
         CameraManager.Instance.SetCamera();
     }
 

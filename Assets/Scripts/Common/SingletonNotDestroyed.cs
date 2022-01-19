@@ -7,7 +7,6 @@ public class SingletonNotDestroyed<T> : MonoBehaviour where T : MonoBehaviour
     private static T instance = null;
     private static object m_lock = new object();   // Using in lock()
     private static bool appIsClosing = false;       // To check that the game(include Unity Editor) is closing
-    private static bool bExistingObject = false;
 
     public static T Instance
     {

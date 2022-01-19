@@ -13,6 +13,7 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private Collider2D cc2D;
     private LayerMask groundMask;
 
+    public bool CanMove { get; set; }
     private bool isJumping;
     private bool isFalling;
     private bool jumpInput;
@@ -39,10 +40,13 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         groundMask = LayerMask.GetMask("Ground");
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
         animatorMovement = Animator.StringToHash("Movement");
+
+        CanMove = true;
     }
 
     private void Update()
     {
+        if (!CanMove) return;
         float moveHorizontal = 0.0f;
         if (Keyboard.current.leftArrowKey.isPressed)
         {
