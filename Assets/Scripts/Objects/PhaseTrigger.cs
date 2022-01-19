@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class PhaseTrigger : MonoBehaviour
 {
     public UnityEvent onPhaseChanged;
-    // Start is called before the first frame update
 
     private void ChangePhase()
     {

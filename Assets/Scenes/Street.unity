@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 335728507}
   - component: {fileID: 335728506}
   - component: {fileID: 335728509}
+  - component: {fileID: 335728510}
   m_Layer: 0
   m_Name: PhaseTrigger_Frontdoor_Butterfly
   m_TagString: Untagged
@@ -193,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335728505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.08, y: 8.07, z: -87.39801}
+  m_LocalPosition: {x: 13.61, y: 7.39, z: -87.39801}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -209,15 +210,29 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 65d1e71b980077646b50f9e56e6e6566, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -6427108968930521406, guid: 65d1e71b980077646b50f9e56e6e6566, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -8399504253522215212, guid: 65d1e71b980077646b50f9e56e6e6566, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &335728510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335728505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24dbae524267617478c024abaad8472a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &389493704
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48, y: 6.98, z: -10}
+  m_LocalPosition: {x: 46.95, y: 7.08, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -607,6 +622,7 @@ GameObject:
   - component: {fileID: 1560938931}
   - component: {fileID: 1560938930}
   - component: {fileID: 1560938932}
+  - component: {fileID: 1560938933}
   m_Layer: 0
   m_Name: Street Main VCam
   m_TagString: Untagged
@@ -657,7 +673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560938929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.93, y: 6.98, z: -10}
+  m_LocalPosition: {x: 46.95, y: 7.08, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 987339849}
@@ -681,6 +697,25 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 456236482}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!95 &1560938933
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560938929}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1610317873
 GameObject:
   m_ObjectHideFlags: 0

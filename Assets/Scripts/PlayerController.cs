@@ -30,7 +30,6 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     [SerializeField] private float flipThreshold = 0.1f;
 
     private int animatorRunningSpeed;
-    private int animatorMovement;
     protected PlayerController() {}
 
     void Start()
@@ -39,14 +38,13 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         cc2D = GetComponent<Collider2D>();
         groundMask = LayerMask.GetMask("Ground");
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
-        animatorMovement = Animator.StringToHash("Movement");
 
         CanMove = true;
     }
 
     private void Update()
     {
-        if (!CanMove) return;
+        if (!CanMove || Keyboard.current == null) return;
         float moveHorizontal = 0.0f;
         if (Keyboard.current.leftArrowKey.isPressed)
         {
@@ -57,7 +55,6 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         }
         
         movementInput = new Vector2(moveHorizontal, 0);
-        animator.SetBool(animatorMovement, moveHorizontal != 0);
 
         if (!isJumping && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
