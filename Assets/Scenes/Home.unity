@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIndex: 0
+  newSceneOrder: 0
 --- !u!4 &1260899136
 Transform:
   m_ObjectHideFlags: 0
@@ -883,6 +884,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4382468891628783680, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: m_LinearDrag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: jumpSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: fallGravityScale
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: jumpGravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: defaultGravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4382468891628783685, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
       propertyPath: m_Name
       value: Player_puppet

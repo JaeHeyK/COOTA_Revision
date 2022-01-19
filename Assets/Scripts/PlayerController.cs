@@ -84,7 +84,6 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         
-        
         rb2D.velocity = velocity;
 
         var horizontalSpeedNormalized = Math.Abs(velocity.x) / maxSpeed;
