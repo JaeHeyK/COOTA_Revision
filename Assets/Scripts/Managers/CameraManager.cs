@@ -7,7 +7,7 @@ public class CameraManager : SingletonNotDestroyed<CameraManager>
     protected CameraManager() {}
     private void FindVcam()
     {
-        vcamsInScene = FindObjectsOfType<CinemachineVirtualCamera>();
+        vcamsInScene = Resources.FindObjectsOfTypeAll<CinemachineVirtualCamera>();
     }
 
     public void SetCamera()

@@ -54,4 +54,11 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
             yield return null;
         }
     }
+
+    public void onPlayerLeft(int moveToScene)
+    {
+        Debug.Log("change to scene: "+moveToScene);
+        Instance.newSceneOrder = moveToScene;
+        StartCoroutine(Instance.LoadSceneByOffset(moveToScene));
+    }
 }

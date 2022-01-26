@@ -4,19 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    private enum SceneOffset
+    public enum SceneOffset
     {
         Previous = -1,
         Next = 1
     };
 
-    [SerializeField] private SceneOffset moveToScene = SceneOffset.Next;
+    [SerializeField] public SceneOffset moveToScene = SceneOffset.Next;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        SceneChangeManager.Instance.newSceneOrder = (int)moveToScene;
-        StartCoroutine(SceneChangeManager.Instance.LoadSceneByOffset((int)moveToScene));
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (!other.CompareTag("Player")) return;
+    //     SceneChangeManager.Instance.newSceneOrder = (int)moveToScene;
+    //     StartCoroutine(SceneChangeManager.Instance.LoadSceneByOffset((int)moveToScene));
+    // }
     
     private void OnDrawGizmos()
     {

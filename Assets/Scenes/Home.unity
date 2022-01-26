@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NextSceneCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 6200461914088759533, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6508588167035717294, guid: 95405a6e9dc41cd42b779cc733d80811, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1135,6 +1139,34 @@ PrefabInstance:
     - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
       propertyPath: defaultGravityScale
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1260899135}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onPlayerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneChangeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+      propertyPath: onPlayerLeft.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4382468891628783685, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
       propertyPath: m_Name

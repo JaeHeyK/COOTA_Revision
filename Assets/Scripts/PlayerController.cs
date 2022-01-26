@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : SingletonNotDestroyed<PlayerController>
@@ -12,11 +13,15 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private Rigidbody2D rb2D;
     private Collider2D cc2D;
     private LayerMask groundMask;
+    private LayerMask prevDoorMask;
+    private LayerMask nextDoorMask;
 
     public bool CanMove { get; set; }
     private bool isJumping;
     private bool isFalling;
     private bool jumpInput;
+    private bool leaveInput;
+    private bool isLeaving;
     private bool isFlipped = true;
 
     private readonly Vector3 originalScale = new Vector3(-1f, 1f, 1f);
@@ -30,6 +35,10 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     [SerializeField] private float flipThreshold = 0.1f;
 
     private int animatorRunningSpeed;
+    
+    [Serializable]
+    public class InteractionEvent : UnityEvent<int> {}
+    public InteractionEvent onPlayerLeft;
     protected PlayerController() {}
 
     void Start()
@@ -37,6 +46,8 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         rb2D = GetComponent<Rigidbody2D>();
         cc2D = GetComponent<Collider2D>();
         groundMask = LayerMask.GetMask("Ground");
+        prevDoorMask = LayerMask.GetMask("PrevDoor");
+        nextDoorMask = LayerMask.GetMask("NextDoor");
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
 
         CanMove = true;
@@ -44,21 +55,28 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
 
     private void Update()
     {
-        if (!CanMove || Keyboard.current == null) return;
+        var keyboard = Keyboard.current;
+        if (!CanMove || keyboard == null) return;
         float moveHorizontal = 0.0f;
-        if (Keyboard.current.leftArrowKey.isPressed)
+        if (keyboard.leftArrowKey.isPressed)
         {
             moveHorizontal = -1.0f;
-        } else if (Keyboard.current.rightArrowKey.isPressed)
+        } else if (keyboard.rightArrowKey.isPressed)
         {
             moveHorizontal = 1.0f;
         }
         
+        
         movementInput = new Vector2(moveHorizontal, 0);
 
-        if (!isJumping && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (!isJumping && keyboard.spaceKey.wasPressedThisFrame)
         {
             jumpInput = true;
+        }
+
+        if (keyboard.ctrlKey.wasPressedThisFrame)
+        {
+            leaveInput = true;
         }
     }
 
@@ -71,8 +89,10 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         UpdateDirection();
         
         UpdateGravityScale();
-    }
 
+        UpdateInteraction();
+    }
+    
     private void UpdateVelocity()
     {
         Vector2 velocity = rb2D.velocity;
@@ -127,6 +147,21 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         }
 
         rb2D.gravityScale = gravityScale;
+    }
+
+    private void UpdateInteraction()
+    {
+        if(leaveInput && cc2D.IsTouchingLayers(prevDoorMask))
+        {
+            onPlayerLeft.Invoke(-1);
+            leaveInput = false;
+        }
+        
+        if(leaveInput && cc2D.IsTouchingLayers(nextDoorMask))
+        {
+            onPlayerLeft.Invoke(1);
+            leaveInput = false;
+        }
     }
 
 }

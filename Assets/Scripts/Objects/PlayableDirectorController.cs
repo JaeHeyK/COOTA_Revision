@@ -32,12 +32,4 @@ public class PlayableDirectorController : MonoBehaviour
             }
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (enabled && collision.CompareTag("Player"))
-        {
-            GetComponent<PlayableDirector>().Play();
-        }
-    }
 }
