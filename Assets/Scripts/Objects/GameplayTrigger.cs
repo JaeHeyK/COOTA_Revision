@@ -5,11 +5,10 @@ using Common;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PhaseTrigger : MonoBehaviour
+public class GameplayTrigger : MonoBehaviour
 {
     public bool repeatable;
-    public GamePhase Phase = GamePhase.etc;
-    public UnityEvent onPhaseActivated;
+    public UnityEvent onObjectActivated;
 
     private void Start()
     {
@@ -17,7 +16,7 @@ public class PhaseTrigger : MonoBehaviour
 
     private void ChangePhase()
     {
-        onPhaseActivated.Invoke();
+        onObjectActivated.Invoke();
     }
     
     private void OnTriggerEnter2D(Collider2D col)
@@ -28,8 +27,13 @@ public class PhaseTrigger : MonoBehaviour
             if (!repeatable)
             {
                 enabled = false;
-                Debug.Log("PhaseTrigger deactivated");
+                Debug.Log("GameplayTrigger deactivated");
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("Gameplay trigger of " + gameObject.name + " enabled");
     }
 }

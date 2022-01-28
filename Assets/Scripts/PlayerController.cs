@@ -20,7 +20,7 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private bool isJumping;
     private bool isFalling;
     private bool jumpInput;
-    private bool leaveInput;
+    private bool interactionInput;
     private bool isLeaving;
     private bool isFlipped = true;
 
@@ -74,9 +74,9 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
             jumpInput = true;
         }
 
-        if (keyboard.ctrlKey.wasPressedThisFrame)
+        if (!interactionInput && keyboard.ctrlKey.wasPressedThisFrame)
         {
-            leaveInput = true;
+            interactionInput = true;
         }
     }
 
@@ -151,17 +151,17 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
 
     private void UpdateInteraction()
     {
-        if(leaveInput && cc2D.IsTouchingLayers(prevDoorMask))
+        if(interactionInput && cc2D.IsTouchingLayers(prevDoorMask))
         {
             onPlayerLeft.Invoke(-1);
-            leaveInput = false;
         }
         
-        if(leaveInput && cc2D.IsTouchingLayers(nextDoorMask))
+        if(interactionInput && cc2D.IsTouchingLayers(nextDoorMask))
         {
             onPlayerLeft.Invoke(1);
-            leaveInput = false;
         }
+
+        interactionInput = false;
     }
 
 }

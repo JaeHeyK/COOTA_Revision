@@ -39,10 +39,12 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
         {
             GameManager.Instance.PositionPlayer("EndSpawnPoint");
         }
-
         newSceneOrder = 0;
         
+        GameManager.Instance.OnSceneChanged();
+        
         CameraManager.Instance.SetCamera();
+        Debug.Log("current scene: " + SceneManager.GetSceneByBuildIndex(currentSceneIndex).name);
     }
 
     public IEnumerator LoadSceneByOffset(int offset)
@@ -55,7 +57,7 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
         }
     }
 
-    public void onPlayerLeft(int moveToScene)
+    public void OnPlayerLeft(int moveToScene)
     {
         Debug.Log("change to scene: "+moveToScene);
         Instance.newSceneOrder = moveToScene;

@@ -11,13 +11,7 @@ public class ChangeScene : MonoBehaviour
     };
 
     [SerializeField] public SceneOffset moveToScene = SceneOffset.Next;
-
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (!other.CompareTag("Player")) return;
-    //     SceneChangeManager.Instance.newSceneOrder = (int)moveToScene;
-    //     StartCoroutine(SceneChangeManager.Instance.LoadSceneByOffset((int)moveToScene));
-    // }
+    
     
     private void OnDrawGizmos()
     {
