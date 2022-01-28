@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - PrevDoor
   - NextDoor
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Colliders
     uniqueID: 2451217945
+    locked: 0
+  - name: Foreground
+    uniqueID: 3186324093
     locked: 0
