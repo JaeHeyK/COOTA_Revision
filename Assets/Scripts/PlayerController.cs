@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : SingletonNotDestroyed<PlayerController>
 { 
-    public float movementSpeed = 3.0f;
+    public Vector2 movementSpeed = new Vector2(50f, 1f);
     public float jumpSpeed = 20.0f;
     private Vector2 movementInput;
     private Rigidbody2D rb2D;
@@ -17,6 +17,8 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private LayerMask nextDoorMask;
 
     public bool CanMove { get; set; }
+    public bool CamClimb { get; set; }
+    private bool isClimbing;
     private bool isJumping;
     private bool isFalling;
     private bool jumpInput;
@@ -51,6 +53,7 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
 
         CanMove = true;
+        CamClimb = false;
     }
 
     private void Update()
@@ -65,9 +68,32 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         {
             moveHorizontal = 1.0f;
         }
+
+        float moveVertical = 0.0f;
+        if (CamClimb)
+        {
+            if (keyboard.upArrowKey.isPressed)
+            {
+                moveVertical = 1.0f;
+                isClimbing = true;
+            } else if (keyboard.downArrowKey.isPressed)
+            {
+                moveVertical = -1.0f;
+                isClimbing = true;
+            }
+
+            if (cc2D.IsTouchingLayers(groundMask))
+            {
+                isClimbing = false;
+            }
+        }
+        else
+        {
+            isClimbing = false;
+        }
         
         
-        movementInput = new Vector2(moveHorizontal, 0);
+        movementInput = new Vector2(moveHorizontal, moveVertical);
 
         if (!isJumping && keyboard.spaceKey.wasPressedThisFrame)
         {
@@ -82,12 +108,12 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
 
     private void FixedUpdate()
     {
+        UpdateDirection();
+        
         UpdateVelocity();
         
         UpdateJump();
-        
-        UpdateDirection();
-        
+
         UpdateGravityScale();
 
         UpdateInteraction();
@@ -96,9 +122,23 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private void UpdateVelocity()
     {
         Vector2 velocity = rb2D.velocity;
-        velocity += movementInput * movementSpeed * Time.fixedDeltaTime;
+        if (!isClimbing)
+        {
+            velocity += movementInput * movementSpeed * Time.fixedDeltaTime;
+        } else 
+        {
+            velocity.x = 0;
+            if (movementInput.y != 0)
+            {
+                velocity.y = movementInput.y * movementSpeed.y * Time.fixedDeltaTime;
+            }
+            else
+            {
+                velocity.y = 0;
+            }
+        }
         movementInput = Vector2.zero;
-        
+
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         
         rb2D.velocity = velocity;
@@ -141,7 +181,10 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     {
         float gravityScale = defaultGravityScale;
 
-        if (!cc2D.IsTouchingLayers(groundMask))
+        if (isClimbing)
+        {
+            gravityScale = 0.0f;
+        } else if (!cc2D.IsTouchingLayers(groundMask))
         {
             gravityScale = rb2D.velocity.y < 0 ? fallGravityScale : jumpGravityScale;
         }

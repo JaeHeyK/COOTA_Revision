@@ -8,7 +8,7 @@ public class GameManager : SingletonNotDestroyed<GameManager>
 {
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private PlayerController playerController = null;
-    [SerializeField] private PhaseTrigger[] phaseTriggers;
+    [SerializeField] private static PhaseTrigger[] phaseTriggers;
     [SerializeField] private static GamePhase currentPhase = GamePhase.init;
     [SerializeField] private static bool isUpdatingPhase = false;
     
@@ -68,6 +68,7 @@ public class GameManager : SingletonNotDestroyed<GameManager>
     {
         currentPhase = (GamePhase)((int)currentPhase + 1) ;
         Debug.Log("current phase is " + currentPhase);
+        Debug.Log("next phase is " + (GamePhase)((int)currentPhase + 1));
         EnablePhaseTrigger();
         Debug.Log("is updating?: " + isUpdatingPhase);
 
@@ -75,13 +76,19 @@ public class GameManager : SingletonNotDestroyed<GameManager>
 
     private void EnablePhaseTrigger()
     {
+        Debug.Log("searching for next phase...");
+
         foreach (var trigger in phaseTriggers)
         {
+            Debug.Log("Comparing trigger: " + trigger.Phase + " with next: " + (GamePhase)((int)currentPhase + 1));
             if (trigger.Phase != (GamePhase)((int)currentPhase + 1)) continue;
+            Debug.Log("Activating trigger: " + trigger.Phase);
             trigger.enabled = true;
             isUpdatingPhase = false;
             break;
         }
+        Debug.Log("next phase updated: " + !isUpdatingPhase);
+
     }
 
     public void OnSceneChanged()

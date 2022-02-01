@@ -49,8 +49,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
-  m_Size: {x: 1.5, y: 4}
+  m_Offset: {x: 0, y: 2.35}
+  m_Size: {x: 1.5, y: 4.7}
   m_Direction: 0
 --- !u!50 &4382468891628783680
 Rigidbody2D:
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436c52121067e2140af3288acaf58835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  movementSpeed: {x: 50, y: 150}
   jumpSpeed: 10
   animator: {fileID: 4774683288856264176}
   maxSpeed: 6
@@ -93,6 +93,9 @@ MonoBehaviour:
   jumpGravityScale: 1.5
   fallGravityScale: 2
   flipThreshold: 0.1
+  onPlayerLeft:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4382468891628783682
 MonoBehaviour:
   m_ObjectHideFlags: 0
