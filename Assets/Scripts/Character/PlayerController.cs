@@ -24,7 +24,8 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private bool jumpInput;
     private bool interactionInput;
     private bool isLeaving;
-    private bool isFlipped = true;
+    public bool isFlipped = true;
+    private int forcedMoveInput = 0;
 
     private readonly Vector3 originalScale = new Vector3(-1f, 1f, 1f);
     readonly Vector3 flippedScale = new Vector3(1f, 1f, 1f);
@@ -59,12 +60,12 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private void Update()
     {
         var keyboard = Keyboard.current;
-        if (!CanMove || keyboard == null) return;
+        if (keyboard == null) return;
         float moveHorizontal = 0.0f;
-        if (keyboard.leftArrowKey.isPressed)
+        if ((CanMove && keyboard.leftArrowKey.isPressed) || forcedMoveInput == -1)
         {
             moveHorizontal = -1.0f;
-        } else if (keyboard.rightArrowKey.isPressed)
+        } else if ((CanMove && keyboard.rightArrowKey.isPressed) || forcedMoveInput == 1)
         {
             moveHorizontal = 1.0f;
         }
@@ -205,6 +206,25 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         }
 
         interactionInput = false;
+    }
+
+    public void ChangeDirection(int direction)
+    {
+        if (direction == -1)
+        {
+            isFlipped = false;
+            transform.localScale = originalScale;
+        }
+        else if(direction == 1)
+        {
+            isFlipped = true;
+            transform.localScale = flippedScale;
+        }
+    }
+
+    public void ForceMovement(int direction)
+    {
+        forcedMoveInput = direction;
     }
 
 }

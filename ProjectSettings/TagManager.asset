@@ -8,6 +8,7 @@ TagManager:
   - MainVCam
   - AttackTrigger
   - Projectile
+  - SubVCam
   layers:
   - Default
   - TransparentFX
@@ -51,12 +52,15 @@ TagManager:
   - name: Player
     uniqueID: 3424988073
     locked: 0
+  - name: Enemy
+    uniqueID: 81845763
+    locked: 0
   - name: Colliders
     uniqueID: 2451217945
     locked: 0
   - name: Foreground
     uniqueID: 3186324093
     locked: 0
-  - name: Enemy
-    uniqueID: 81845763
+  - name: NPC
+    uniqueID: 2951250213
     locked: 0

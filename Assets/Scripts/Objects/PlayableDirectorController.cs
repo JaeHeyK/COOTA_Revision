@@ -6,13 +6,15 @@ using UnityEngine.Timeline;
 
 public class PlayableDirectorController : MonoBehaviour
 {
+    private GameObject player;
+    private GameObject cameraManager;
     private SignalReceiver playerSignalReceiver;
     private Animator playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
-        playerSignalReceiver = GameObject.FindWithTag("Player").GetComponent<SignalReceiver>();
-        playerAnimator = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
+        player = GameObject.FindWithTag("Player");
+        cameraManager = GameObject.Find("CameraManager");
         BindPlayerSignal();
     }
 
@@ -25,10 +27,16 @@ public class PlayableDirectorController : MonoBehaviour
         {
             if (track.name == "Player Movement Signal")
             {
-                director.SetGenericBinding(track, playerSignalReceiver);
+                director.SetGenericBinding(track, player.GetComponent<SignalReceiver>());
             } else if (track.name == "Player Animation")
             {
-                director.SetGenericBinding(track, playerAnimator);
+                director.SetGenericBinding(track, player.GetComponent<Animator>());
+            } else if (track.name == "Player Tween")
+            {
+                director.SetGenericBinding(track, player.GetComponent<Transform>());
+            } else if (track.name == "Camera Set Signal")
+            {
+                director.SetGenericBinding(track, cameraManager.GetComponent<SignalReceiver>());
             }
         }
     }

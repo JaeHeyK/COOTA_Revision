@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,14 +135,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436c52121067e2140af3288acaf58835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 30
+  movementSpeed: {x: 50, y: 1}
   jumpSpeed: 10
+  animator: {fileID: 0}
   maxSpeed: 4
   defaultGravityScale: 1.5
   jumpGravityScale: 1.5
   fallGravityScale: 2
   flipThreshold: 0.1
-  spawnPoint: {x: 0, y: 0, z: 0}
+  onPlayerLeft:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2808301735030415348
 MonoBehaviour:
   m_ObjectHideFlags: 0

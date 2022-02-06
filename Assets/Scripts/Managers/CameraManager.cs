@@ -18,7 +18,18 @@ public class CameraManager : SingletonNotDestroyed<CameraManager>
 
         foreach (var vcam in vcamsInScene)
         {
-            if (!vcam.gameObject.CompareTag("CutsceneVCam"))
+            if (vcam.gameObject.CompareTag("MainVCam"))
+            {
+                vcam.Follow = PlayerController.Instance.gameObject.transform;
+            }
+        }
+    }
+
+    public void SetSubCamera()
+    {
+        foreach (var vcam in vcamsInScene)
+        {
+            if (vcam.gameObject.CompareTag("SubVCam"))
             {
                 vcam.Follow = PlayerController.Instance.gameObject.transform;
             }
