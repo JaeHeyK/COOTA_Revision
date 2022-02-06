@@ -8,6 +8,7 @@ public class CameraManager : SingletonNotDestroyed<CameraManager>
     private void FindVcam()
     {
         vcamsInScene = Resources.FindObjectsOfTypeAll<CinemachineVirtualCamera>();
+        Debug.Log("Vcam ea: " + vcamsInScene.Length);
     }
 
     public void SetCamera()

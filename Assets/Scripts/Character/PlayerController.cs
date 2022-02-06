@@ -23,6 +23,7 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     private bool isFalling;
     private bool jumpInput;
     private bool interactionInput;
+    public bool isInteracting;
     private bool isLeaving;
     public bool isFlipped = true;
     private int forcedMoveInput = 0;
@@ -44,6 +45,7 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     public InteractionEvent onPlayerLeft;
 
     public UnityEvent OnPlayerDead;
+    public UnityEvent OnInteract;
     protected PlayerController() {}
 
     void Start()
@@ -197,14 +199,17 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
 
     private void UpdateInteraction()
     {
-        if(interactionInput && cc2D.IsTouchingLayers(prevDoorMask))
+        switch (interactionInput)
         {
-            onPlayerLeft.Invoke(-1);
-        }
-        
-        if(interactionInput && cc2D.IsTouchingLayers(nextDoorMask))
-        {
-            onPlayerLeft.Invoke(1);
+            case true when cc2D.IsTouchingLayers(prevDoorMask):
+                onPlayerLeft.Invoke(-1);
+                break;
+            case true when cc2D.IsTouchingLayers(nextDoorMask):
+                onPlayerLeft.Invoke(1);
+                break;
+            case true when cc2D.IsTouchingLayers(LayerMask.GetMask("Interactable")):
+                isInteracting = true;
+                break;
         }
 
         interactionInput = false;

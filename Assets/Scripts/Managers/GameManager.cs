@@ -56,11 +56,6 @@ public class GameManager : SingletonNotDestroyed<GameManager>
         PlayerController.Instance.transform.position = GameObject.Find(spawnPoint).transform.position;
     }
 
-    public void RepositionPlayer()
-    {
-        PlayerController.Instance.transform.position = currentRespawnpoint.GetPosition();
-    }
-
     public void FindPhaseTriggers()
     {
         phaseTriggers = FindObjectsOfType<PhaseTrigger>();

@@ -33,7 +33,7 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
     {
         Initialization();
 
-        if (newSceneOrder == 1 || GameManager.Instance.CurrentPhase == GamePhase.init)
+        if (newSceneOrder == 1 || currentSceneIndex == 0)
         {
             GameManager.Instance.PositionPlayer("StartSpawnPoint");
         } else if (newSceneOrder == -1)
@@ -43,7 +43,7 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
         else
         {
             Debug.Log("Repositioning");
-            GameManager.Instance.RepositionPlayer();
+            GameManager.Instance.PositionPlayer("RespawnPoint");
         }
         newSceneOrder = 0;
         

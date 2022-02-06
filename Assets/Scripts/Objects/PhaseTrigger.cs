@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class PhaseTrigger : MonoBehaviour
 {
     public bool repeatable;
+    public bool isInterctionOnly;
     public GamePhase Phase = GamePhase.etc;
     public UnityEvent onPhaseActivated;
 
@@ -22,13 +23,25 @@ public class PhaseTrigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (enabled && col.CompareTag("Player"))
+        if (enabled && !isInterctionOnly && col.CompareTag("Player"))
         {
-            Debug.Log("Player triggering");
             ChangePhase();
             if (!repeatable)
             {
                 enabled = false;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (isInterctionOnly && other.CompareTag("Player"))
+        {
+            bool isInteractable = other.GetComponent<PlayerController>().isInteracting;
+            if (isInteractable)
+            {
+                isInteractable = false;
+                ChangePhase();
             }
         }
     }

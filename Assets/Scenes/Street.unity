@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 472037477}
   - component: {fileID: 472037478}
   m_Layer: 0
-  m_Name: Player_Before_Durnken_Chase
+  m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
