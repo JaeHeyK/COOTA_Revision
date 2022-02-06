@@ -24,11 +24,11 @@ public class PhaseTrigger : MonoBehaviour
     {
         if (enabled && col.CompareTag("Player"))
         {
+            Debug.Log("Player triggering");
             ChangePhase();
             if (!repeatable)
             {
                 enabled = false;
-                Debug.Log("PhaseTrigger deactivated");
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,19 +33,23 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
     {
         Initialization();
 
-        if (newSceneOrder == 1)
+        if (newSceneOrder == 1 || GameManager.Instance.CurrentPhase == GamePhase.init)
         {
             GameManager.Instance.PositionPlayer("StartSpawnPoint");
         } else if (newSceneOrder == -1)
         {
             GameManager.Instance.PositionPlayer("EndSpawnPoint");
         }
+        else
+        {
+            Debug.Log("Repositioning");
+            GameManager.Instance.RepositionPlayer();
+        }
         newSceneOrder = 0;
         
         GameManager.Instance.OnSceneChanged();
         
         CameraManager.Instance.SetCamera();
-        Debug.Log("current scene: " + SceneManager.GetSceneByBuildIndex(currentSceneIndex).name);
     }
 
     public IEnumerator LoadSceneByOffset(int offset)
@@ -57,10 +62,16 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
         }
     }
 
-    public void OnPlayerLeft(int moveToScene)
+    public void LoadNewScene(int moveToScene)
     {
-        Debug.Log("change to scene: "+moveToScene);
         Instance.newSceneOrder = moveToScene;
+        Debug.Log("Load Scene: " + SceneManager.GetSceneByBuildIndex(currentSceneIndex+moveToScene).name);
         StartCoroutine(Instance.LoadSceneByOffset(moveToScene));
     }
+
+    public void LoadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
 }

@@ -443,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522826236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.05, y: 3.03, z: 0}
+  m_LocalPosition: {x: 3.05, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -484,7 +484,7 @@ MonoBehaviour:
   onPhaseActivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 707210140223272056, guid: 0d471b3398d242f4394b30e41674fda0, type: 3}
+      - m_Target: {fileID: 7713416208859760148}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: onPhaseActivated
         m_Mode: 1
@@ -1144,6 +1144,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 329ea7dd52acd8543a356a1f11a7f119, type: 3}
+--- !u!114 &7713416208859760148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7123301309879044455, guid: 329ea7dd52acd8543a356a1f11a7f119, type: 3}
+  m_PrefabInstance: {fileID: 7713416208859760147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6aa787937b84cd48fae7c1e16759288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7772174778286828560
 PrefabInstance:
   m_ObjectHideFlags: 0

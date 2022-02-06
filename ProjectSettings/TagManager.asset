@@ -9,6 +9,8 @@ TagManager:
   - AttackTrigger
   - Projectile
   - SubVCam
+  - Enemy
+  - RespawnPoint
   layers:
   - Default
   - TransparentFX

@@ -9,16 +9,20 @@ public class GameManager : SingletonNotDestroyed<GameManager>
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private PlayerController playerController = null;
     [SerializeField] private static PhaseTrigger[] phaseTriggers;
+    [SerializeField] private static RespawnPoint[] respawnPoints;
+    [SerializeField] private static RespawnPoint currentRespawnpoint;
     [SerializeField] private static GamePhase currentPhase = GamePhase.init;
     [SerializeField] private static bool isUpdatingPhase = false;
+    [SerializeField] private static bool isRestartingPhase = false;
     
     private bool bPlayerInstantiated;
+    
+    public GamePhase CurrentPhase { get;  }
     protected GameManager() {}
 
     private void Start()
     {
         Initialization();
-        Debug.Log("Started");
     }
     
     private void Initialization()
@@ -52,14 +56,23 @@ public class GameManager : SingletonNotDestroyed<GameManager>
         PlayerController.Instance.transform.position = GameObject.Find(spawnPoint).transform.position;
     }
 
+    public void RepositionPlayer()
+    {
+        PlayerController.Instance.transform.position = currentRespawnpoint.GetPosition();
+    }
+
     public void FindPhaseTriggers()
     {
         phaseTriggers = FindObjectsOfType<PhaseTrigger>();
     }
 
+    public void FindRespawnPoints()
+    {
+        respawnPoints = FindObjectsOfType<RespawnPoint>();
+    }
+
     public void onPhaseActivated()
     {
-        Debug.Log("phase activated!");
         isUpdatingPhase = true;
         UpdatePhase();
     }
@@ -67,41 +80,58 @@ public class GameManager : SingletonNotDestroyed<GameManager>
     private void UpdatePhase()
     {
         currentPhase = (GamePhase)((int)currentPhase + 1) ;
-        Debug.Log("current phase is " + currentPhase);
-        Debug.Log("next phase is " + (GamePhase)((int)currentPhase + 1));
+        Debug.Log("Current phase is: " + currentPhase);
+        
         EnablePhaseTrigger();
-        Debug.Log("is updating?: " + isUpdatingPhase);
-
     }
 
     private void EnablePhaseTrigger()
     {
-        Debug.Log("searching for next phase...");
-
         foreach (var trigger in phaseTriggers)
         {
-            Debug.Log("Comparing trigger: " + trigger.Phase + " with next: " + (GamePhase)((int)currentPhase + 1));
-            if (trigger.Phase != (GamePhase)((int)currentPhase + 1)) continue;
-            Debug.Log("Activating trigger: " + trigger.Phase);
+            if (trigger.Phase != (GamePhase)((int)currentPhase + 1))
+            {
+                trigger.enabled = false;
+                continue;
+            }
             trigger.enabled = true;
             isUpdatingPhase = false;
+            isRestartingPhase = false;
             break;
         }
-        Debug.Log("next phase updated: " + !isUpdatingPhase);
+    }
 
+    private void GetRespawnPoint()
+    {
+        foreach (var point in respawnPoints)
+        {
+            if (point.Phase == (GamePhase)((int)currentPhase + 1))
+            {
+                Debug.Log("current rp is : " + point);
+                currentRespawnpoint = point;
+                break;
+            }
+        }
     }
 
     public void OnSceneChanged()
     {
         FindPhaseTriggers();
-        Debug.Log("still updating?: " + isUpdatingPhase);
-        Debug.Log("After scene changed, current phase is " + currentPhase);
+        FindRespawnPoints();
+        GetRespawnPoint();
 
-        if (isUpdatingPhase)
+        if (isUpdatingPhase || isRestartingPhase)
         {
-            Debug.Log("scene changed, and update phase!");
             EnablePhaseTrigger();
         }
     }
+
+    public void RestartPhase()
+    {
+        currentPhase = (GamePhase)((int)currentPhase - 1);
+        Debug.Log("Phase after restart: " + currentPhase);
+        isRestartingPhase = true;
+    }
+    
     
 }

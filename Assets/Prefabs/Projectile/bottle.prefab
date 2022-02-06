@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4604399410210080253}
   - component: {fileID: 7390713577376661274}
   - component: {fileID: 1243894099549076398}
+  - component: {fileID: 5221392983590491618}
   m_Layer: 10
   m_Name: bottle
   m_TagString: Projectile
@@ -167,3 +168,31 @@ PolygonCollider2D:
       - {x: 0.84499997, y: -1.26}
       - {x: 0.92499995, y: -1.09}
       - {x: 1.005, y: -1.06}
+--- !u!114 &5221392983590491618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788279290445296094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdeadd69cac0e34480f16c4056de035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttackPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isLethal: 1

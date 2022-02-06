@@ -58,7 +58,6 @@ public class SingletonNotDestroyed<T> : MonoBehaviour where T : MonoBehaviour
             Destroy(this);
             return;
         }
-        Debug.Log("hello "+typeof(T));
     
         instance = this as T;
     }

@@ -42,6 +42,8 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     [Serializable]
     public class InteractionEvent : UnityEvent<int> {}
     public InteractionEvent onPlayerLeft;
+
+    public UnityEvent OnPlayerDead;
     protected PlayerController() {}
 
     void Start()
@@ -96,12 +98,12 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         
         movementInput = new Vector2(moveHorizontal, moveVertical);
 
-        if (!isJumping && keyboard.spaceKey.wasPressedThisFrame)
+        if (CanMove && !isJumping && keyboard.spaceKey.wasPressedThisFrame)
         {
             jumpInput = true;
         }
 
-        if (!interactionInput && keyboard.ctrlKey.wasPressedThisFrame)
+        if (CanMove && !interactionInput && keyboard.ctrlKey.wasPressedThisFrame)
         {
             interactionInput = true;
         }
@@ -225,6 +227,13 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
     public void ForceMovement(int direction)
     {
         forcedMoveInput = direction;
+    }
+
+    public void Die()
+    {
+        CanMove = false;
+        Debug.Log("player dead");
+        OnPlayerDead.Invoke();
     }
 
 }

@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 404434116881426277}
   - component: {fileID: 404434116881426276}
   - component: {fileID: 404434116881426264}
+  - component: {fileID: 1325897004}
   m_Layer: 11
   m_Name: Drunken_Puppet
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &404434116881426266
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +49,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 4}
-  m_Size: {x: 5, y: 7}
+  m_Size: {x: 5, y: 6.5}
   m_Direction: 0
 --- !u!50 &404434116881426276
 Rigidbody2D:
@@ -62,8 +63,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -83,8 +84,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f4812ff8de7c6498685339bf573200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 4382468891628783685, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+  hand: {fileID: 3486964970346183816}
+  animator: {fileID: 8954174478482194679}
+  movementSpeed: 10
+  maxSpeed: 10
+  leftScale: {x: 0, y: 0, z: 0}
+  rightScale: {x: 0, y: 0, z: 0}
+  movementInput: 0
   projectilePrefab: {fileID: 2788279290445296094, guid: 777fa05d81d7a3648a0bb1fed59ba936, type: 3}
   throwForce: 20
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4382468891628783681, guid: 6111f385e9b16e3439f68dbf4b25a4e7, type: 3}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1325897004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404434116881426279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 8a5359bc025cdda4db7404a263762a34, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 404434116881426264}
+          m_TargetAssemblyTypeName: Drunken, Assembly-CSharp
+          m_MethodName: set_CanMove
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!114 &404434117120816700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147060932845578894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3b84f1268ddb243a3de5aede3d28c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnThrowAnim:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 404434116881426264}
+        m_TargetAssemblyTypeName: Drunken, Assembly-CSharp
+        m_MethodName: ThrowProjectile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnMeleeAnim:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 404434116881426264}
+        m_TargetAssemblyTypeName: Drunken, Assembly-CSharp
+        m_MethodName: Melee
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &404434117046528094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,8 +394,23 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6adc7cd86666a5a4d92aedca59310955, type: 3}
+--- !u!1 &8147060932845578894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8398362760460780240, guid: 6adc7cd86666a5a4d92aedca59310955, type: 3}
+  m_PrefabInstance: {fileID: 404434117046528094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &175617758456586537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 572869491585010039, guid: 6adc7cd86666a5a4d92aedca59310955, type: 3}
+  m_PrefabInstance: {fileID: 404434117046528094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8954174478482194679 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8781817585992181929, guid: 6adc7cd86666a5a4d92aedca59310955, type: 3}
+  m_PrefabInstance: {fileID: 404434117046528094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3486964970346183816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3889111740229457110, guid: 6adc7cd86666a5a4d92aedca59310955, type: 3}
   m_PrefabInstance: {fileID: 404434117046528094}
   m_PrefabAsset: {fileID: 0}
