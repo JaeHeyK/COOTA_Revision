@@ -71,4 +71,9 @@ public class SingletonNotDestroyed<T> : MonoBehaviour where T : MonoBehaviour
     {
         appIsClosing = true;
     }
+
+    public void destroyItself()
+    {
+        DestroyImmediate(gameObject,true);
+    }
 }

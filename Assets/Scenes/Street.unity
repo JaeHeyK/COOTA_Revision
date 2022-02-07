@@ -3303,6 +3303,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2087740056}
     - target: {fileID: 3365867822761294236, guid: c6a91bd5fa4fb084289ece905e4e3dbb, type: 3}
+      propertyPath: movingPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3365867822761294236, guid: c6a91bd5fa4fb084289ece905e4e3dbb, type: 3}
       propertyPath: movingPoints.Array.data[0]
       value: 
       objectReference: {fileID: 863142796}

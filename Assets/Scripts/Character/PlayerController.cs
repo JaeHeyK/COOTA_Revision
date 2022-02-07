@@ -203,9 +203,11 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         {
             case true when cc2D.IsTouchingLayers(prevDoorMask):
                 onPlayerLeft.Invoke(-1);
+                CamClimb = false;
                 break;
             case true when cc2D.IsTouchingLayers(nextDoorMask):
                 onPlayerLeft.Invoke(1);
+                CamClimb = false;
                 break;
             case true when cc2D.IsTouchingLayers(LayerMask.GetMask("Interactable")):
                 isInteracting = true;
@@ -213,6 +215,8 @@ public class PlayerController : SingletonNotDestroyed<PlayerController>
         }
 
         interactionInput = false;
+        isClimbing = false;
+        isJumping = false;
     }
 
     public void ChangeDirection(int direction)

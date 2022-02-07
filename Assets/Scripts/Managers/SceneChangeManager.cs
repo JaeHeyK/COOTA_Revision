@@ -33,7 +33,7 @@ public class SceneChangeManager : SingletonNotDestroyed<SceneChangeManager>
     {
         Initialization();
 
-        if (newSceneOrder == 1 || currentSceneIndex == 0)
+        if (newSceneOrder == 1 || currentSceneIndex == 1)
         {
             GameManager.Instance.PositionPlayer("StartSpawnPoint");
         } else if (newSceneOrder == -1)

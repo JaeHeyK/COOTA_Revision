@@ -12,6 +12,7 @@
         hideout_release_butterfly,
         hideout_follow_butterfly,
         hideout_exit,
+        ending,
         etc
     }
 }

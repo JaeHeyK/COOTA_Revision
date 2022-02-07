@@ -35,13 +35,17 @@ public class PhaseTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (isInterctionOnly && other.CompareTag("Player"))
+        if (enabled && isInterctionOnly && other.CompareTag("Player"))
         {
             bool isInteractable = other.GetComponent<PlayerController>().isInteracting;
             if (isInteractable)
             {
-                isInteractable = false;
+                other.GetComponent<PlayerController>().isInteracting = false;
                 ChangePhase();
+                if (!repeatable)
+                {
+                    enabled = false;
+                }
             }
         }
     }

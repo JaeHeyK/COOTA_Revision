@@ -6,14 +6,13 @@ using UnityEngine.InputSystem;
 public class Butterfly : MonoBehaviour
 {
     [SerializeField] private float speed = 1.0f;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator = null;
     private int animatorIsFlying;
     public List<Transform> movingPoints = new List<Transform>();
     private float t;
     public int currentPointIndex = 0;
 
     public int nextPointIndex = 0;
-    
     
     void Start()
     {
@@ -51,6 +50,7 @@ public class Butterfly : MonoBehaviour
     public void UpdatePosition()
     {
         nextPointIndex = currentPointIndex + 1;
+        Debug.Log("Update position: " + currentPointIndex + " to " + nextPointIndex);
         animator.SetBool(animatorIsFlying, true);
     }
 }

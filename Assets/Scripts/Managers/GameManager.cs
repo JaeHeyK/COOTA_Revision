@@ -45,7 +45,7 @@ public class GameManager : SingletonNotDestroyed<GameManager>
         if (playerController is null)
         {
             Debug.Log("player not exists, instantiate one");
-
+        
             bPlayerInstantiated = true;
             playerController = Instantiate(playerPrefab).GetComponent<PlayerController>();
         }
