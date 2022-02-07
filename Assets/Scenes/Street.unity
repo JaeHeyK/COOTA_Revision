@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
+  isInterctionOnly: 0
   Phase: 3
   onPhaseActivated:
     m_PersistentCalls:
@@ -431,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
+  isInterctionOnly: 0
   Phase: 5
   onPhaseActivated:
     m_PersistentCalls:
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
+  isInterctionOnly: 0
   Phase: 2
   onPhaseActivated:
     m_PersistentCalls:
@@ -1040,6 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
+  isInterctionOnly: 0
   Phase: 4
   onPhaseActivated:
     m_PersistentCalls:
@@ -2075,7 +2079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899833284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 4.88, z: 121.10512}
+  m_LocalPosition: {x: 2.91, y: 4.99, z: 121.10512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1074042567}

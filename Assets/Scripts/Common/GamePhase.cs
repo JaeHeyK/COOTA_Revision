@@ -10,6 +10,7 @@
         street_attacked_drunken,
         woods,
         hideout_release_butterfly,
+        hideout_follow_butterfly,
         hideout_exit,
         etc
     }
